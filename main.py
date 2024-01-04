@@ -1,6 +1,6 @@
 import os
-import db
-from llm import OllamaLLM
+import db.db as db
+from llms.llm import LLM
 import time
 
 user1 = "user1"
@@ -17,17 +17,15 @@ database.createCollection(user2, {"type": "test"})
 database.addPDF(user1, os.path.abspath("./data/user1/sampletext.pdf"))
 database.addPDF(user2, os.path.abspath("./data/user2/sampletext.pdf"))
 
-ollm = OllamaLLM(database)
-user1Instance = ollm.serveUser(user1)
-user2Instance = ollm.serveUser(user2)
+llm = LLM(database).init()
+user1Instance = llm.serveUser(user1)
+user2Instance = llm.serveUser(user2)
 
 resp1 = user1Instance.query("Where did the old man sit? And what did he feed?")
 resp2 = user2Instance.query("Where did the old man sit? And what did he feed?")
-resp3 = user1Instance.query("Where did the old man sit? And what did he feed?")
 
 print(resp1)
 print(resp2)
-print(resp3)
 
 # while True:
 #     user_input = input("Enter your query: ")

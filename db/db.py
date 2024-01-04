@@ -1,7 +1,7 @@
 import os
 import chromadb
 import time
-import db_utils
+import db.db_utils as db_utils
 from llama_index import SimpleDirectoryReader
 import json
 
