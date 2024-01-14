@@ -39,7 +39,7 @@ class LlamaCpp(BaseLLM):
             verbose=properties['llamaCppVerbose'] == "True",
         )
 
-        if properties["useOpenAI"] ["useOpenAI"] == "True":
+        if properties["useOpenAI"] == "True":
             self.embedding = OpenAIEmbedding()
         else:
             self.embedding = HuggingFaceEmbeddings(
