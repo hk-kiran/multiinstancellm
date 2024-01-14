@@ -1,7 +1,7 @@
 import os
 import chromadb
 import time
-import db.db_utils as db_utils
+import src.db.db_utils as db_utils
 from llama_index import SimpleDirectoryReader
 import json
 
@@ -9,7 +9,7 @@ class Database:
 
     def __init__(self, ip, port):
         self.db = db_utils.connect_to_database(ip, port)
-        self.ef = db_utils.getOpenAIEmbeddingFunc()
+        self.ef = db_utils.getEmbeddingFunc()
         self.n_nearest = 5
     
     def checkHeartBeat(self):

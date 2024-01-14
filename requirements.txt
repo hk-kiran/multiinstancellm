@@ -1,0 +1,5 @@
+chromadb==0.4.22
+jproperties==2.1.1
+llama_index==0.9.9
+langchain==0.1.0
+pypdf==3.17.4

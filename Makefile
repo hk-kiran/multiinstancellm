@@ -6,8 +6,10 @@ DOCKER_COMPOSE_FILE := docker-compose.yml
 # local: clean
 # 	mkdir -p logs
 # 	cd logs && chroma run --path ../chroma &
+build:
+	docker build -t multiinstance-llm .
 
-up: clean
+up: build clean
 	docker-compose -f $(DOCKER_COMPOSE_FILE) up -d 
 
 down:

@@ -1,13 +1,13 @@
 import os
-import db.db as db
-from llms.llm import LLM
-import time
+import src.db.db as db
+from src.llms.llm import LLM
 
 user1 = "user1"
 user2 = "user2"
 
 def initDatabase():
-    database = db.Database("localhost", 8000)
+    chroma_url = os.getenv("CHROMA_URL", "localhost")
+    database = db.Database(chroma_url, 8000)
     database.checkHeartBeat()
     return database
 

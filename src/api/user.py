@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from app import app
-from objects.user import User
+from src.objects.user import User
 
 users = []
 

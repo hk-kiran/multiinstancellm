@@ -12,3 +12,4 @@ class QueryEngine:
     
     def query(self, query_string):
         return self.query_engine.query(query_string).response
+    

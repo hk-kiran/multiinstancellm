@@ -4,3 +4,8 @@ services:
     image: chromadb/chroma
     ports:
       - 8000:8000
+  llm:
+    environment:
+      - CHROMA_URL=multiinstancellm-chroma-1
+    image: multiinstance-llm
+    

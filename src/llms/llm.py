@@ -3,9 +3,10 @@ from llama_index.vector_stores import ChromaVectorStore
 from llama_index.embeddings import OpenAIEmbedding
 from llama_index.llms import LlamaCPP
 from langchain.llms import Ollama
-from db.db import Database
+from langchain.embeddings import HuggingFaceEmbeddings
+from src.db.db import Database
 from llama_index.llms.llama_utils import messages_to_prompt, completion_to_prompt
-from llms.llm_utils import BaseLLM, QueryEngine
+from src.llms.llm_utils import BaseLLM, QueryEngine
 from jproperties import Properties
 
 class LLM:
@@ -35,9 +36,15 @@ class LlamaCpp(BaseLLM):
             model_kwargs={"n_gpu_layers": int(properties['gpu'])},
             messages_to_prompt=messages_to_prompt,
             completion_to_prompt=completion_to_prompt,
-            verbose=properties['llamaCppVerbose'],
+            verbose=properties['llamaCppVerbose'] == "True",
         )
-        self.embedding = OpenAIEmbedding()
+
+        if properties["useOpenAI"] ["useOpenAI"] == "True":
+            self.embedding = OpenAIEmbedding()
+        else:
+            self.embedding = HuggingFaceEmbeddings(
+                model_name=properties["huggingFaceEmbeddingModel"],
+            )
 
     def serveUser(self, userid: str):
         collection = self.db.getCollection(userid)
